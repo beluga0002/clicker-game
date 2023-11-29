@@ -6,28 +6,39 @@ let autoClicker = false;
 let autoClickRate = 1000; // Auto click interval in milliseconds
 let autoClickInterval;
 
+// Load game state from local storage
 window.onload = function() {
+  loadGame();
   // ... (existing code)
-
-  document.getElementById('clickButton').addEventListener('click', click);
-  document.getElementById('upgradeButton').addEventListener('click', buyUpgrade);
-  document.getElementById('autoClickButton').addEventListener('click', buyAutoClicker);
 
   updateUI();
 };
 
-function updateUI() {
-  document.getElementById('clicks').textContent = clicks;
-  document.getElementById('clickPower').textContent = clickPower;
-  document.getElementById('upgradeCost').textContent = upgradeCost;
-  document.getElementById('autoClickCost').textContent = autoClickCost;
+function loadGame() {
+  const savedClicks = localStorage.getItem('clicks');
+  const savedClickPower = localStorage.getItem('clickPower');
+  const savedUpgradeCost = localStorage.getItem('upgradeCost');
+  const savedAutoClickCost = localStorage.getItem('autoClickCost');
+  const savedAutoClicker = localStorage.getItem('autoClicker');
+
+  if (savedClicks !== null) clicks = parseInt(savedClicks);
+  if (savedClickPower !== null) clickPower = parseInt(savedClickPower);
+  if (savedUpgradeCost !== null) upgradeCost = parseInt(savedUpgradeCost);
+  if (savedAutoClickCost !== null) autoClickCost = parseInt(savedAutoClickCost);
+  if (savedAutoClicker !== null) autoClicker = savedAutoClicker === 'true';
 }
 
-function click() {
-  clicks += clickPower;
-  document.getElementById('clicks').textContent = clicks;
+function saveGame() {
+  localStorage.setItem('clicks', clicks);
+  localStorage.setItem('clickPower', clickPower);
+  localStorage.setItem('upgradeCost', upgradeCost);
+  localStorage.setItem('autoClickCost', autoClickCost);
+  localStorage.setItem('autoClicker', autoClicker);
 }
 
+// ... (existing code)
+
+// Call saveGame() whenever a significant game state change occurs
 function buyUpgrade() {
   if (clicks >= upgradeCost) {
     clickPower++;
@@ -35,6 +46,7 @@ function buyUpgrade() {
     upgradeCost *= 2;
 
     updateUI();
+    saveGame(); // Save after upgrade purchase
   }
 }
 
@@ -45,9 +57,7 @@ function buyAutoClicker() {
     autoClickCost *= 2;
 
     updateUI();
-    autoClickInterval = setInterval(function() {
-      clicks += clickPower;
-      document.getElementById('clicks').textContent = clicks;
-    }, autoClickRate);
+    saveGame(); // Save after auto clicker purchase
+    // ... (existing code for auto-clicker logic)
   }
 }
