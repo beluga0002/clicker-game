@@ -50,6 +50,22 @@ function buyUpgrade() {
   }
 }
 
+// ... (existing code)
+
+window.onload = function() {
+  loadGame();
+  // ... (existing code)
+
+  document.getElementById('clickButton').addEventListener('click', click);
+  document.getElementById('upgradeButton').addEventListener('click', buyUpgrade);
+  document.getElementById('autoClickButton').addEventListener('click', buyAutoClicker);
+  document.getElementById('saveButton').addEventListener('click', saveGame);
+
+  updateUI();
+};
+
+// ... (existing code)
+
 function buyAutoClicker() {
   if (clicks >= autoClickCost && !autoClicker) {
     autoClicker = true;
