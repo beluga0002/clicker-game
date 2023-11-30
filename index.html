@@ -1,24 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>cliker game</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <title>Clicker Game</title>
+  <link rel="stylesheet" type="text/css" href="styles.css">
 </head>
 <body>
   <div class="container">
-    <h1>clik game</h1>
+    <h1>Clicker Game</h1>
     <p>Clicks: <span id="clicks">0</span></p>
-    <button id="clickButton">clik</button>
     <p>Click Power: <span id="clickPower">1</span></p>
-    <button id="upgradeButton">upgrad (Cost: <span id="upgradeCost">10</span>)</button>
-     <!-- Add a new button for Auto Clicker -->
-     <button id="autoClickButton">auto cliker (Cost: <span id="autoClickCost">50</span>)</button>
-    <p>instruction: clik and upgrade</p>
-
-  <small>Copyright © Oliver Hiivola 2023 </small>
+    <button id="clickButton">Click Me!</button>
+    <div>
+      <button class="upgradeButton" data-cost="10" data-multiplier="2">Upgrade x2 (Cost: 10)</button>
+      <button class="upgradeButton" data-cost="25" data-multiplier="3">Upgrade x3 (Cost: 25)</button>
+      <button class="upgradeButton" data-cost="50" data-multiplier="4">Upgrade x4 (Cost: 50)</button>
+    </div>
+    <div>
+      <button class="autoClickButton" data-cost="20" data-rate="500">Auto Clicker (Cost: 20)</button>
+    </div>
+    <button id="saveButton">Save</button>
   </div>
 
   <script src="script.js"></script>
 </body>
 </html>
-
