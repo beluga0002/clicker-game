@@ -3,7 +3,7 @@ let clickPower = 1;
 let upgradeCosts = [10, 25, 50]; // Array of upgrade costs
 let upgradeMultipliers = [2, 3, 4]; // Corresponding multipliers
 let autoClickCost = 20; // Auto-clicker cost
-let autoClickRate = 500; // Auto-click rate in milliseconds
+let autoClickRate = 150; // Auto-click rate in milliseconds
 let autoClickInterval;
 
 window.onload = function() {
