@@ -3,7 +3,7 @@ let clickPower = 1;
 let upgradeCost = 10;
 let autoClickCost = 50;
 let autoClicker = false;
-let autoClickRate = 70; // Auto click interval in milliseconds
+let autoClickRate = 125; // Auto click interval in milliseconds
 let autoClickInterval;
 
 window.onload = function() {
