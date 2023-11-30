@@ -1,50 +1,42 @@
-let clicks = 0;
+let clickCount = 0;
+let autoClickerCost = 10;
+let upgradeCost = 50;
+let autoClickers = 0;
 let clickPower = 1;
-let upgradeCosts = [10, 25, 50]; // Array of upgrade costs
-let upgradeMultipliers = [2, 3, 4]; // Corresponding multipliers
-let autoClickCost = 20; // Auto-clicker cost
-let autoClickRate = 500; // Auto-click rate in milliseconds
-let autoClickInterval;
 
-window.onload = function() {
-  loadGame();
-  updateUI();
-
-  document.getElementById('clickButton').addEventListener('click', click);
-  document.getElementById('saveButton').addEventListener('click', saveGame);
-
-  const upgradeButtons = document.querySelectorAll('.upgradeButton');
-  upgradeButtons.forEach(button => {
-    button.addEventListener('click', () => {
-      buyUpgrade(button);
-    });
-  });
-
-  const autoClickButton = document.querySelector('.autoClickButton');
-  autoClickButton.addEventListener('click', buyAutoClicker);
-};
-
-function click() {
-  clicks += clickPower;
-  updateUI();
-  saveGame(); // Save after a click
+function clickButton() {
+  clickCount += clickPower;
+  document.getElementById('clickCount').innerText = clickCount;
 }
 
 function buyAutoClicker() {
-  if (clicks >= autoClickCost && !autoClickInterval) {
-    clicks -= autoClickCost;
-    autoClickCost *= 2;
-
-    autoClickInterval = setInterval(function() {
-      clicks += clickPower;
-      updateUI();
-      saveGame(); // Save after auto-click
-    }, autoClickRate);
-
-    updateUI();
-    saveGame(); // Save after auto-clicker purchase
+  if (clickCount >= autoClickerCost) {
+    autoClickers++;
+    clickCount -= autoClickerCost;
+    autoClickerCost = Math.ceil(autoClickerCost * 1.5);
+    document.getElementById('clickCount').innerText = clickCount;
+    document.getElementById('autoClickerCost').innerText = autoClickerCost;
+    startAutoClicker();
+  } else {
+    alert("Not enough clicks to buy an autoclicker!");
   }
 }
 
-// ... (existing code)
+function startAutoClicker() {
+  setInterval(function() {
+    clickCount += autoClickers * clickPower;
+    document.getElementById('clickCount').innerText = clickCount;
+  }, 1000);
+}
 
+function upgrade() {
+  if (clickCount >= upgradeCost) {
+    clickPower++;
+    clickCount -= upgradeCost;
+    upgradeCost = Math.ceil(upgradeCost * 2);
+    document.getElementById('clickCount').innerText = clickCount;
+    document.getElementById('upgradeCost').innerText = upgradeCost;
+  } else {
+    alert("Not enough clicks to upgrade!");
+  }
+}
