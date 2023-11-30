@@ -1,23 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
   <title>Clicker Game</title>
-  <link rel="stylesheet" type="text/css" href="style.css">
+  <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <div class="container">
     <h1>Clicker Game</h1>
-    <p>Clicks: <span id="clicks">0</span></p>
-    <p>Click Power: <span id="clickPower">1</span></p>
-    <button id="clickButton">Click Me!</button>
-    <div>
-      <button class="upgradeButton" data-cost="10" data-multiplier="2">Upgrade x2 (Cost: 10)</button>
-      <button class="upgradeButton" data-cost="25" data-multiplier="3">Upgrade x3 (Cost: 25)</button>
-      <button class="upgradeButton" data-cost="50" data-multiplier="4">Upgrade x4 (Cost: 50)</button>
-    </div>
-    <div>
-      <button class="autoClickButton" data-cost="20" data-rate="500">Auto Clicker (Cost: 20)</button>    
-    </div>
+    <p>Click Count: <span id="clickCount">0</span></p>
+    <button onclick="clickButton()">Click me!</button>
+    <button onclick="buyAutoClicker()">Buy Autoclicker (Cost: <span id="autoClickerCost">10</span>)</button>
+    <button onclick="upgrade()">Upgrade (Cost: <span id="upgradeCost">50</span>)</button>
+  </div>
+
   <script src="script.js"></script>
 </body>
 </html>
