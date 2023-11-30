@@ -1,42 +1,43 @@
-let clickCount = 0;
+let croissants = 0;
 let autoClickerCost = 10;
 let upgradeCost = 50;
 let autoClickers = 0;
 let clickPower = 1;
 
 function clickButton() {
-  clickCount += clickPower;
-  document.getElementById('clickCount').innerText = clickCount;
+  croissants += clickPower;
+  document.getElementById('clickCount').innerText = croissants;
 }
 
 function buyAutoClicker() {
-  if (clickCount >= autoClickerCost) {
+  if (croissants >= autoClickerCost) {
     autoClickers++;
-    clickCount -= autoClickerCost;
+    croissants -= autoClickerCost;
     autoClickerCost = Math.ceil(autoClickerCost * 1.5);
-    document.getElementById('clickCount').innerText = clickCount;
-    document.getElementById('autoClickerCost').innerText = autoClickerCost;
+    document.getElementById('clickCount').innerText = croissants;
+    document.getElementById('autoClickers').innerText = autoClickers;
     startAutoClicker();
   } else {
-    alert("Not enough clicks to buy an autoclicker!");
+    alert("Not enough croissants to buy a bakery!");
   }
 }
 
 function startAutoClicker() {
   setInterval(function() {
-    clickCount += autoClickers * clickPower;
-    document.getElementById('clickCount').innerText = clickCount;
+    croissants += autoClickers * clickPower;
+    document.getElementById('clickCount').innerText = croissants;
   }, 1000);
 }
 
 function upgrade() {
-  if (clickCount >= upgradeCost) {
+  if (croissants >= upgradeCost) {
     clickPower++;
-    clickCount -= upgradeCost;
+    croissants -= upgradeCost;
     upgradeCost = Math.ceil(upgradeCost * 2);
-    document.getElementById('clickCount').innerText = clickCount;
+    document.getElementById('clickCount').innerText = croissants;
+    document.getElementById('clickPower').innerText = clickPower;
     document.getElementById('upgradeCost').innerText = upgradeCost;
   } else {
-    alert("Not enough clicks to upgrade!");
+    alert("Not enough croissants to hire a baker!");
   }
 }
