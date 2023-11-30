@@ -16,6 +16,7 @@ function buyAutoClicker() {
     autoClickerCost = Math.ceil(autoClickerCost * 1.5);
     document.getElementById('clickCount').innerText = croissants;
     document.getElementById('autoClickers').innerText = autoClickers;
+    document.getElementById('autoClickerCost').innerText = autoClickerCost;
     startAutoClicker();
   } else {
     alert("Not enough croissants to buy a bakery!");
