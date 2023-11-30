@@ -8,7 +8,7 @@ let autoClickInterval;
 
 window.onload = function() {
   loadGame();
-  // ... (existing code)
+  updateUI();
 
   document.getElementById('clickButton').addEventListener('click', click);
   document.getElementById('saveButton').addEventListener('click', saveGame);
@@ -22,9 +22,13 @@ window.onload = function() {
 
   const autoClickButton = document.querySelector('.autoClickButton');
   autoClickButton.addEventListener('click', buyAutoClicker);
-
-  updateUI();
 };
+
+function click() {
+  clicks += clickPower;
+  updateUI();
+  saveGame(); // Save after a click
+}
 
 function buyAutoClicker() {
   if (clicks >= autoClickCost && !autoClickInterval) {
